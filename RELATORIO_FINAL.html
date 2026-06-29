@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Final - Modelagem e Simulação</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .subtitle {
+            font-size: 0.95em;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 15px;
+            font-weight: 300;
+        }
+
+        .info-aluno {
+            background: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            margin: 30px 40px;
+            border-radius: 4px;
+        }
+
+        .info-aluno h3 {
+            color: #1565c0;
+            margin-bottom: 15px;
+        }
+
+        .info-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
+        .info-row p {
+            margin: 8px 0;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.3em;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            color: #667eea;
+            font-size: 1.1em;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tbody tr:hover {
+            background: #f5f5f5;
+            transition: background 0.3s ease;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .info-box strong {
+            color: #1565c0;
+        }
+
+        .nota-importante {
+            background: #fff8e1;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .nota-importante strong {
+            color: #e65100;
+        }
+
+        .checklist {
+            background: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .checklist h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .checklist ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .checklist li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .reference-box {
+            background: #f3e5f5;
+            border-left: 5px solid #9c27b0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .reference-box ol {
+            margin-left: 20px;
+        }
+
+        .reference-box li {
+            margin-bottom: 8px;
+        }
+
+        .figura-placeholder {
+            background: #f5f5f5;
+            border: 2px dashed #999;
+            padding: 40px;
+            text-align: center;
+            color: #666;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .page-break {
+            page-break-after: always;
+            margin: 40px 0;
+        }
+
+        footer {
+            background: #f5f5f5;
+            padding: 30px 40px;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            color: #666;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+
+            .info-row {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+
+        .status-placeholder {
+            background: #fff3cd;
+            padding: 10px;
+            border-radius: 4px;
+            font-style: italic;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Relatório Final</h1>
+            <p>Modelagem e Simulação de Eventos Discretos</p>
+            <p class="subtitle">Sistema de Atendimento de Beneficiários</p>
+        </header>
+
+        <div class="info-aluno">
+            <h3>📋 Identificação</h3>
+            <div class="info-row">
+                <p><strong>Nome:</strong> <span class="status-placeholder">[Insira seu nome]</span></p>
+                <p><strong>Matrícula:</strong> <span class="status-placeholder">[Insira sua matrícula]</span></p>
+            </div>
+            <div class="info-row">
+                <p><strong>Disciplina:</strong> Modelagem e Simulação</p>
+                <p><strong>Período:</strong> <span class="status-placeholder">[2026.1 ou 2026.2]</span></p>
+            </div>
+            <div class="info-row">
+                <p><strong>Data de Entrega:</strong> <span class="status-placeholder">[__/__/____]</span></p>
+                <p><strong>CRAS Coletado:</strong> <span class="status-placeholder">[Nome do CRAS]</span></p>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- SEÇÃO 1: INTRODUÇÃO E OBJETIVOS -->
+            <section>
+                <h2>1. Introdução e Objetivos</h2>
+
+                <h3>1.1 Contexto da Atividade</h3>
+                <p>
+                    <span class="status-placeholder">[Descreva brevemente o contexto da atividade prática: modelagem e simulação de chegadas de usuários em um CRAS (Centro de Referência de Assistência Social). Explique que o foco está em analisar os intervalos entre chegadas sucessivas de pessoas/famílias para atendimento de benefícios sociais. Cite a importância de compreender padrões de chegada para planejamento operacional.]</span>
+                </p>
+
+                <h3>1.2 Objetivo Geral</h3>
+                <p>
+                    <span class="status-placeholder">[Descreva o objetivo geral do trabalho. Ex: "Analisar a distribuição dos intervalos entre chegadas sucessivas de usuários em um CRAS através de coleta de dados em campo, testes estatísticos de aderência e simulação de eventos discretos, validando um modelo que represente o processo de chegadas."]</span>
+                </p>
+
+                <h3>1.3 Objetivos Específicos</h3>
+                <ul>
+                    <li><span class="status-placeholder">[Objetivo específico 1: Coletar dados de horários de chegada de usuários em um CRAS com n ≥ 100 observações]</span></li>
+                    <li><span class="status-placeholder">[Objetivo específico 2: Calcular e analisar os intervalos entre chegadas sucessivas]</span></li>
+                    <li><span class="status-placeholder">[Objetivo específico 3: Testar aderência dos intervalos a distribuições estatísticas (exponencial, normal, Weibull, etc.)]</span></li>
+                    <li><span class="status-placeholder">[Objetivo específico 4: Construir e validar um modelo de simulação que reproduza o padrão de chegadas observado]</span></li>
+                    <li><span class="status-placeholder">[Objetivo específico 5: Analisar comparativamente os resultados e propor conclusões]</span></li>
+                </ul>
+            </section>
+
+            <!-- SEÇÃO 2: METODOLOGIA -->
+            <section>
+                <h2>2. Metodologia</h2>
+
+                <h3>2.1 Local de Coleta de Dados</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Informação</th>
+                            <th>Descrição</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>CRAS</strong></td>
+                            <td><span class="status-placeholder">[Nome do CRAS onde foram coletados os dados]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Endereço</strong></td>
+                            <td><span class="status-placeholder">[Endereço completo com rua, número, bairro]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cidade</strong></td>
+                            <td><span class="status-placeholder">[Teresina, PI]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Telefone</strong></td>
+                            <td><span class="status-placeholder">[Telefone do CRAS]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Horário de Funcionamento</strong></td>
+                            <td><span class="status-placeholder">[Segunda a sexta, 7h30 às 16h]</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>2.2 Procedimento de Coleta</h3>
+                <p>
+                    <span class="status-placeholder">[Descreva como foi realizada a coleta de dados: data, horários, método de observação (cenário A ou B), como foi identificado o momento de chegada, registro dos tempos (hora e minuto).]</span>
+                </p>
+
+                <h4>Cenário Observado</h4>
+                <p>
+                    <span class="status-placeholder">[Selecione o cenário: (A) Totem/guichê de senhas ou (B) Triagem por pessoa. Descreva como foi identificado exatamente o momento de cada chegada para registro dos dados.]</span>
+                </p>
+
+                <h4>Equipe de Coleta</h4>
+                <p>
+                    <span class="status-placeholder">[Nomes dos alunos que coletaram os dados, função de cada um, datas das coletas.]</span>
+                </p>
+
+                <h3>2.3 Instrumentos e Ferramentas</h3>
+
+                <h4>Em Campo</h4>
+                <ul>
+                    <li><span class="status-placeholder">[Celular com horário sincronizado (configuração automática habilitada)]</span></li>
+                    <li><span class="status-placeholder">[Papel e caneta para anotação de dados em tempo real]</span></li>
+                    <li><span class="status-placeholder">[Planilha eletrônica no celular (opcional) para facilitar registro]</span></li>
+                </ul>
+
+                <h4>Análise e Simulação</h4>
+                <ul>
+                    <li><span class="status-placeholder">[Python 3.8+]</span></li>
+                    <li><span class="status-placeholder">[NumPy e Pandas para manipulação de dados]</span></li>
+                    <li><span class="status-placeholder">[SciPy.stats para testes de aderência (Kolmogorov-Smirnov)]</span></li>
+                    <li><span class="status-placeholder">[Matplotlib e Seaborn para visualizações]</span></li>
+                    <li><span class="status-placeholder">[SimPy para simulação de eventos discretos]</span></li>
+                </ul>
+
+                <h3>2.4 Período de Coleta</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Horário Inicial</th>
+                            <th>Horário Final</th>
+                            <th>Observações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="status-placeholder">[__/__/____]</span></td>
+                            <td><span class="status-placeholder">[__:__]</span></td>
+                            <td><span class="status-placeholder">[__:__]</span></td>
+                            <td><span class="status-placeholder">[n observações coletadas]</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="status-placeholder">[__/__/____]</span></td>
+                            <td><span class="status-placeholder">[__:__]</span></td>
+                            <td><span class="status-placeholder">[__:__]</span></td>
+                            <td><span class="status-placeholder">[n observações coletadas]</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: center; font-style: italic;">
+                                <span class="status-placeholder">[Adicione mais linhas conforme necessário]</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- SEÇÃO 3: COLETA DE DADOS -->
+            <section>
+                <h2>3. Coleta de Dados</h2>
+
+                <h3>3.1 Resumo da Coleta</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Métrica</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Total de Observações de Chegadas (n)</strong></td>
+                            <td><span class="status-placeholder">[Número total de chegadas registradas]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total de Intervalos entre Chegadas (n-1)</strong></td>
+                            <td><span class="status-placeholder">[n - 1 intervalos calculados]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Período de Observação</strong></td>
+                            <td><span class="status-placeholder">[de __/__/____ a __/__/____]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Número de Dias de Coleta</strong></td>
+                            <td><span class="status-placeholder">[Quantidade de dias coletados]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Intervalo Mínimo (em minutos)</strong></td>
+                            <td><span class="status-placeholder">[X.XX min]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Intervalo Máximo (em minutos)</strong></td>
+                            <td><span class="status-placeholder">[X.XX min]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Intervalo Médio (em minutos)</strong></td>
+                            <td><span class="status-placeholder">[X.XX min]</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>3.2 Dados Coletados</h3>
+                <p>
+                    <span class="status-placeholder">[Apresente uma amostra dos dados coletados em formato tabular, mostrando as colunas: Sequência, Data, Hora, Minuto, Intervalo entre Chegadas (em minutos).]</span>
+                </p>
+
+                <div class="figura-placeholder">
+                    [Inserir tabela ou screenshot dos dados coletados]
+                </div>
+
+                <h3>3.3 Desafios e Observações em Campo</h3>
+                <p>
+                    <span class="status-placeholder">[Descreva desafios enfrentados durante a coleta: horários de pico, dificuldade de visualização, pessoas simultâneas, ausências do funcionário, etc. Cite como foram resolvidos.]</span>
+                </p>
+            </section>
+
+            <!-- SEÇÃO 4: TRATAMENTO DE DADOS -->
+            <section>
+                <h2>4. Tratamento de Dados</h2>
+
+                <h3>4.1 Limpeza de Dados</h3>
+                <p>
+                    <span class="status-placeholder">[Descreva o processo de limpeza: remoção de valores duplicados, correção de registros com asteriscos ou dúvidas, tratamento de outliers.]</span>
+                </p>
+
+                <h4>Procedimentos Realizados</h4>
+                <ul>
+                    <li><span class="status-placeholder">[Identificação de dados faltantes ou inconsistentes]</span></li>
+                    <li><span class="status-placeholder">[Remoção ou correção de outliers]</span></li>
+                    <li><span class="status-placeholder">[Validação de intervalos de tempo]</span></li>
+                </ul>
+
+                <h3>4.2 Análise Exploratória de Dados</h3>
+
+                <h4>Estatísticas Descritivas</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Estatística</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Média de Intervalos</strong></td>
+                            <td><span class="status-placeholder">[X.XX minutos]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mediana</strong></td>
+                            <td><span class="status-placeholder">[X.XX minutos]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Desvio Padrão</strong></td>
+                            <td><span class="status-placeholder">[X.XX minutos]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mínimo</strong></td>
+                            <td><span class="status-placeholder">[X.XX minutos]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Máximo</strong></td>
+                            <td><span class="status-placeholder">[X.XX minutos]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>1º Quartil (Q1)</strong></td>
+                            <td><span class="status-placeholder">[X.XX minutos]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>3º Quartil (Q3)</strong></td>
+                            <td><span class="status-placeholder">[X.XX minutos]</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>Visualizações</h4>
+                <div class="figura-placeholder">
+                    [Inserir histograma dos intervalos entre chegadas]
+                </div>
+
+                <div class="figura-placeholder">
+                    [Inserir box plot dos dados]
+                </div>
+
+                <h3>4.3 Taxa de Chegadas (λ) e Intervalo Médio entre Chegadas</h3>
+                <p>
+                    <span class="status-placeholder">[Calcule e descreva a taxa de chegadas λ (lambda) em chegadas por minuto ou por hora. Fórmula: λ = (total de observações) / (tempo total em minutos). O intervalo médio entre chegadas é calculado como 1/λ.]</span>
+                </p>
+                <p><strong>Taxa de Chegadas: λ = <span class="status-placeholder">[____ chegadas/minuto]</span></strong></p>
+                <p><strong>Intervalo Médio entre Chegadas: 1/λ = <span class="status-placeholder">[____ minutos]</span></strong></p>
+            </section>
+
+            <!-- SEÇÃO 5: TESTE DE ADERÊNCIA -->
+            <section>
+                <h2>5. Teste de Aderência</h2>
+
+                <h3>5.1 Distribuições Testadas</h3>
+                <p>
+                    <span class="status-placeholder">[Descreva as distribuições testadas para os intervalos entre chegadas: exponencial, normal, Weibull, gama, lognormal, etc. Justifique por que essas distribuições foram escolhidas com base nas características dos dados.]</span>
+                </p>
+
+                <h3>5.2 Teste Kolmogorov-Smirnov (KS) dos Intervalos de Chegadas</h3>
+                <p>
+                    O teste KS compara a distribuição empírica dos intervalos entre chegadas sucessivas com a distribuição teórica, calculando a máxima diferença entre as funções de distribuição acumuladas (FDA empírica vs FDA teórica). A hipótese nula (H₀) assume que os intervalos seguem a distribuição testada. Um p-value > 0.05 indica que não há evidência estatística para rejeitar a hipótese nula.
+                </p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Distribuição</th>
+                            <th>Parâmetro(s)</th>
+                            <th>Estatística KS</th>
+                            <th>p-value</th>
+                            <th>Aderência (α=0.05)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Exponencial</strong></td>
+                            <td><span class="status-placeholder">[λ = ...]</span></td>
+                            <td><span class="status-placeholder">[0.XXXX]</span></td>
+                            <td><span class="status-placeholder">[0.XXXX]</span></td>
+                            <td><span class="status-placeholder">[SIM / NÃO]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Normal</strong></td>
+                            <td><span class="status-placeholder">[μ = ..., σ = ...]</span></td>
+                            <td><span class="status-placeholder">[0.XXXX]</span></td>
+                            <td><span class="status-placeholder">[0.XXXX]</span></td>
+                            <td><span class="status-placeholder">[SIM / NÃO]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Weibull</strong></td>
+                            <td><span class="status-placeholder">[k = ..., λ = ...]</span></td>
+                            <td><span class="status-placeholder">[0.XXXX]</span></td>
+                            <td><span class="status-placeholder">[0.XXXX]</span></td>
+                            <td><span class="status-placeholder">[SIM / NÃO]</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>5.3 Gráfico Q-Q (Quantil-Quantil) dos Intervalos de Chegadas</h3>
+                <p>
+                    O gráfico Q-Q compara os quantis empíricos dos intervalos de chegada com os quantis teóricos. Uma distribuição bem ajustada apresenta pontos próximos à linha diagonal (y = x). Desvios significativos indicam falta de aderência.
+                </p>
+                <div class="figura-placeholder">
+                    [Inserir gráfico Q-Q para a distribuição com melhor aderência aos intervalos de chegadas]
+                </div>
+
+                <h3>5.4 Histograma dos Intervalos com Curva Teórica</h3>
+                <div class="figura-placeholder">
+                    [Inserir histograma dos intervalos observados sobreposto com a PDF teórica da distribuição escolhida]
+                </div>
+
+                <h3>5.5 Conclusão do Teste de Aderência</h3>
+                <p>
+                    <span class="status-placeholder">[Descreva qual distribuição foi escolhida com base nos testes estatísticos. Justifique por que essa distribuição melhor representa os intervalos entre chegadas coletados. Cite o p-value obtido e sua interpretação.]</span>
+                </p>
+
+                <div class="info-box">
+                    <strong>Distribuição Selecionada:</strong> <span class="status-placeholder">[Exponencial / Normal / Weibull / Outra]</span>
+                </div>
+            </section>
+
+            <!-- SEÇÃO 6: ESPECIFICAÇÃO DO MODELO -->
+            <section>
+                <h2>6. Especificação do Modelo</h2>
+
+                <h3>6.1 Caracterização do Processo de Chegadas</h3>
+                <p>
+                    <span class="status-placeholder">[Descreva o processo de chegadas de usuários ao CRAS. Justifique a escolha da distribuição teórica com base nas características observadas nos dados coletados.]</span>
+                </p>
+
+                <h3>6.2 Parâmetros do Modelo</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parâmetro</th>
+                            <th>Símbolo</th>
+                            <th>Valor</th>
+                            <th>Unidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Taxa de Chegadas</strong></td>
+                            <td>λ</td>
+                            <td><span class="status-placeholder">[X.XX]</span></td>
+                            <td>chegadas/minuto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Intervalo Médio entre Chegadas</strong></td>
+                            <td>1/λ</td>
+                            <td><span class="status-placeholder">[X.XX]</span></td>
+                            <td>minutos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Parâmetro da Distribuição</strong></td>
+                            <td>α (ou k, β, etc)</td>
+                            <td><span class="status-placeholder">[X.XX]</span></td>
+                            <td>conforme a distribuição</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>6.3 Diagrama de Atividades Cíclicas (DAC/ACD)</h3>
+                <div class="figura-placeholder">
+                    [Inserir diagrama ACD mostrando entidades, atividades, estados e transições]
+                </div>
+
+                <h3>6.4 Suposições do Modelo</h3>
+                <ul>
+                    <li><span class="status-placeholder">[Suposição 1: Os intervalos entre chegadas sucessivas seguem a distribuição escolhida (exponencial, normal, Weibull, etc.)]</span></li>
+                    <li><span class="status-placeholder">[Suposição 2: O processo de chegadas é estacionário durante o período de observação]</span></li>
+                    <li><span class="status-placeholder">[Suposição 3: As chegadas são independentes entre si]</span></li>
+                    <li><span class="status-placeholder">[Suposição 4: A taxa de chegadas permanece constante (λ) durante toda a simulação]</span></li>
+                </ul>
+            </section>
+
+            <!-- SEÇÃO 7: SIMULAÇÃO -->
+            <section>
+                <h2>7. Simulação</h2>
+
+                <h3>7.1 Ferramenta de Simulação</h3>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><strong>Linguagem de Programação</strong></td>
+                            <td><span class="status-placeholder">[Python]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Biblioteca de Simulação</strong></td>
+                            <td><span class="status-placeholder">[SimPy 4.x ou superior]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bibliotecas Auxiliares</strong></td>
+                            <td><span class="status-placeholder">[NumPy, SciPy, Matplotlib, Pandas]</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>7.2 Configuração da Simulação</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parâmetro</th>
+                            <th>Valor</th>
+                            <th>Justificativa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tempo Total de Simulação</strong></td>
+                            <td><span class="status-placeholder">[X minutos / X horas]</span></td>
+                            <td><span class="status-placeholder">[Corresponde ao período de observação coletado]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Distribuição de Chegadas</strong></td>
+                            <td><span class="status-placeholder">[Exponencial / Normal / Weibull / Outra]</span></td>
+                            <td><span class="status-placeholder">[Resultado do teste de aderência]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Taxa de Chegadas (λ)</strong></td>
+                            <td><span class="status-placeholder">[X.XX chegadas/minuto]</span></td>
+                            <td><span class="status-placeholder">[Calculada a partir dos dados observados]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Número de Réplicas</strong></td>
+                            <td><span class="status-placeholder">[X réplicas]</span></td>
+                            <td><span class="status-placeholder">[Para estimação confiável de intervalos de confiança]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Semente Aleatória</strong></td>
+                            <td><span class="status-placeholder">[Valor para reprodutibilidade]</span></td>
+                            <td><span class="status-placeholder">[Permite replicação exata dos resultados]</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>7.3 Principais Métricas de Saída</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Métrica</th>
+                            <th>Descrição</th>
+                            <th>Símbolo</th>
+                            <th>Valor Simulado</th>
+                            <th>Valor Observado</th>
+                            <th>Erro (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Intervalo Médio entre Chegadas</strong></td>
+                            <td>Tempo médio entre duas chegadas sucessivas</td>
+                            <td>I.C. (médio)</td>
+                            <td><span class="status-placeholder">[X.XX min]</span></td>
+                            <td><span class="status-placeholder">[X.XX min]</span></td>
+                            <td><span class="status-placeholder">[X.X%]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Taxa de Chegadas</strong></td>
+                            <td>Número médio de chegadas por minuto (1 / I.C. médio)</td>
+                            <td>λ</td>
+                            <td><span class="status-placeholder">[X.XX chegadas/min]</span></td>
+                            <td><span class="status-placeholder">[X.XX chegadas/min]</span></td>
+                            <td><span class="status-placeholder">[X.X%]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Desvio Padrão dos Intervalos</strong></td>
+                            <td>Variabilidade dos intervalos entre chegadas</td>
+                            <td>σ(I.C.)</td>
+                            <td><span class="status-placeholder">[X.XX min]</span></td>
+                            <td><span class="status-placeholder">[X.XX min]</span></td>
+                            <td><span class="status-placeholder">[X.X%]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Coeficiente de Variação</strong></td>
+                            <td>Razão entre desvio padrão e média dos intervalos</td>
+                            <td>CV</td>
+                            <td><span class="status-placeholder">[X.XX]</span></td>
+                            <td><span class="status-placeholder">[X.XX]</span></td>
+                            <td><span class="status-placeholder">[X.X%]</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>7.4 Validação do Modelo</h3>
+                <p>
+                    <span class="status-placeholder">[Descreva como o modelo de chegadas foi validado: comparação entre intervalos simulados e observados, testes estatísticos, análise de resíduos e aderência visual.]</span>
+                </p>
+
+                <h4>Testes de Validação Realizados</h4>
+                <ul>
+                    <li><span class="status-placeholder">[Teste 1: Comparação de médias dos intervalos (teste t ou Mann-Whitney)]</span></li>
+                    <li><span class="status-placeholder">[Teste 2: Comparação de variâncias dos intervalos (teste F ou Levene)]</span></li>
+                    <li><span class="status-placeholder">[Teste 3: Teste de Kolmogorov-Smirnov entre distribuições simulada e observada]</span></li>
+                    <li><span class="status-placeholder">[Teste 4: Análise de erros percentuais na média e desvio padrão < 20%]</span></li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>Resultado da Validação:</strong> <span class="status-placeholder">[APROVADO / REPROVADO. Descrever motivo e critérios utilizados.]</span>
+                </div>
+
+                <h3>7.5 Visualizações da Simulação</h3>
+                <div class="figura-placeholder">
+                    [Inserir gráfico de histograma dos intervalos simulados vs. observados]
+                </div>
+
+                <div class="figura-placeholder">
+                    [Inserir gráfico Q-Q comparativo (simulado vs. observado)]
+                </div>
+
+                <div class="figura-placeholder">
+                    [Inserir gráfico de série temporal dos intervalos simulados]
+                </div>
+
+                <div class="figura-placeholder">
+                    [Inserir gráfico de função densidade de probabilidade (PDF) teórica vs. empírica]
+                </div>
+            </section>
+
+            <!-- SEÇÃO 8: ANÁLISE DE RESULTADOS -->
+            <section>
+                <h2>8. Análise de Resultados</h2>
+
+                <h3>8.1 Análise da Distribuição dos Intervalos</h3>
+                <p>
+                    <span class="status-placeholder">[Analise as características dos intervalos de chegadas sucessivas observados. Discuta a variabilidade, tendências temporais, presença de padrões (ex: picos em determinados horários).]</span>
+                </p>
+
+                <h3>8.2 Intervalos de Confiança</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Métrica</th>
+                            <th>Média</th>
+                            <th>Intervalo de Confiança (95%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Intervalo Médio entre Chegadas</strong></td>
+                            <td><span class="status-placeholder">[X.XX min]</span></td>
+                            <td><span class="status-placeholder">[X.XX - X.XX min]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Taxa de Chegadas (λ)</strong></td>
+                            <td><span class="status-placeholder">[X.XX chegadas/min]</span></td>
+                            <td><span class="status-placeholder">[X.XX - X.XX chegadas/min]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Desvio Padrão dos Intervalos</strong></td>
+                            <td><span class="status-placeholder">[X.XX min]</span></td>
+                            <td><span class="status-placeholder">[X.XX - X.XX min]</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>8.3 Análise Comparativa</h3>
+                <p>
+                    <span class="status-placeholder">[Compare os intervalos de chegadas simulados com os intervalos observados em campo. Discuta concordâncias e discrepâncias entre os dados reais e simulados.]</span>
+                </p>
+
+                <h3>8.4 Características Temporais das Chegadas</h3>
+                <p>
+                    <span class="status-placeholder">[Identifique padrões temporais nos intervalos de chegadas: existem períodos de pico (intervalos menores)? Existe sazonalidade? Os intervalos são mais variáveis em determinados horários?]</span>
+                </p>
+
+                <div class="nota-importante">
+                    <strong>⚠️ Padrões Identificados:</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><span class="status-placeholder">[Padrão 1: Horários com chegadas mais frequentes (intervalos menores)]</span></li>
+                        <li><span class="status-placeholder">[Padrão 2: Horários com chegadas menos frequentes (intervalos maiores)]</span></li>
+                        <li><span class="status-placeholder">[Padrão 3: Variabilidade observada nos intervalos]</span></li>
+                    </ul>
+                </div>
+
+                <h3>8.5 Qualidade do Ajuste da Distribuição</h3>
+                <p>
+                    <span class="status-placeholder">[Analise se a distribuição escolhida no teste de aderência adequadamente representa os intervalos de chegadas observados. Discuta resíduos, desvios e confiabilidade do modelo para fins de simulação.]</span>
+                </p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Aspecto</th>
+                            <th>Observação</th>
+                            <th>Implicação para Simulação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="status-placeholder">[Aspecto 1: p-value do teste KS]</span></td>
+                            <td><span class="status-placeholder">[Valor obtido e interpretação]</span></td>
+                            <td><span class="status-placeholder">[Distribição adequada / Requer verificação adicional]</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="status-placeholder">[Aspecto 2: Comportamento dos extremos]</span></td>
+                            <td><span class="status-placeholder">[Como a distribuição modela valores muito pequenos e muito grandes]</span></td>
+                            <td><span class="status-placeholder">[Confiável / Limitações]</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="status-placeholder">[Aspecto 3: Variabilidade capturada]</span></td>
+                            <td><span class="status-placeholder">[Se o desvio padrão simulado corresponde ao observado]</span></td>
+                            <td><span class="status-placeholder">[Boa / Precisa ajuste]</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- SEÇÃO 9: CONCLUSÕES -->
+            <section>
+                <h2>9. Conclusões</h2>
+
+                <h3>9.1 Síntese dos Resultados</h3>
+                <p>
+                    <span class="status-placeholder">[Resuma os principais resultados obtidos: número de observações coletadas, distribuição identificada, modelo escolhido, métricas de desempenho, validação do modelo.]</span>
+                </p>
+
+                <h3>9.2 Alcance dos Objetivos</h3>
+                <ul>
+                    <li><span class="status-placeholder">[Objetivo 1: ✓ Alcançado / ✗ Não alcançado. Justificativa.]</span></li>
+                    <li><span class="status-placeholder">[Objetivo 2: ✓ Alcançado / ✗ Não alcançado. Justificativa.]</span></li>
+                    <li><span class="status-placeholder">[Objetivo 3: ✓ Alcançado / ✗ Não alcançado. Justificativa.]</span></li>
+                    <li><span class="status-placeholder">[Objetivo 4: ✓ Alcançado / ✗ Não alcançado. Justificativa.]</span></li>
+                </ul>
+
+                <h3>9.3 Aprendizados e Contribuições</h3>
+                <p>
+                    <span class="status-placeholder">[Descreva o que aprendeu com essa atividade: sobre coleta de dados em campo, análise estatística, testes de aderência, simulação de processos estocásticos, modelagem de chegadas, trabalho em equipe, etc.]</span>
+                </p>
+
+                <h3>9.4 Limitações do Estudo</h3>
+                <ul>
+                    <li><span class="status-placeholder">[Limitação 1: Amostra coletada em período específico pode não representar todo o ano]</span></li>
+                    <li><span class="status-placeholder">[Limitação 2: Variações sazonais e períodos especiais não foram capturados]</span></li>
+                    <li><span class="status-placeholder">[Limitação 3: Modelo assume distribuição estacionária durante o período observado]</span></li>
+                    <li><span class="status-placeholder">[Limitação 4: Padrões de chegada podem variar em dias da semana não coletados]</span></li>
+                </ul>
+
+                <h3>9.5 Trabalhos Futuros</h3>
+                <ul>
+                    <li><span class="status-placeholder">[Trabalho futuro 1: Coletar dados em múltiplos períodos do ano para capturar sazonalidade]</span></li>
+                    <li><span class="status-placeholder">[Trabalho futuro 2: Comparar padrões de chegada entre diferentes dias da semana]</span></li>
+                    <li><span class="status-placeholder">[Trabalho futuro 3: Investigar covariáveis que influenciam os intervalos de chegada]</span></li>
+                    <li><span class="status-placeholder">[Trabalho futuro 4: Aplicar modelo a outros CRAS e comparar padrões]</span></li>
+                </ul>
+
+                <div class="checklist">
+                    <h4>Checklist de Qualidade</h4>
+                    <ul>
+                        <li>Coleta com n ≥ 100 observações de chegadas</li>
+                        <li>Intervalos entre chegadas calculados e analisados</li>
+                        <li>Teste de aderência com ≥ 2 distribuições para os intervalos</li>
+                        <li>Teste KS realizado com p-value > 0.05 para a distribuição escolhida</li>
+                        <li>Gráfico Q-Q mostrando boa aderência visual</li>
+                        <li>Simulação de chegadas validada com erros < 20% nas métricas de intervalos</li>
+                        <li>Análise com intervalos de confiança (95%)</li>
+                        <li>Comparação visual (histograma, série temporal) entre dados simulados e observados</li>
+                        <li>Relatório estruturado e bem documentado</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SEÇÃO 10: REFERÊNCIAS -->
+            <section>
+                <h2>10. Referências</h2>
+
+                <div class="reference-box">
+                    <ol>
+                        <li><span class="status-placeholder">[Referência 1: Livro sobre Simulação de Eventos Discretos (ex: Law & Kelton, 2000)]</span></li>
+                        <li><span class="status-placeholder">[Referência 2: Livro ou artigo sobre Análise de Dados e Testes de Aderência]</span></li>
+                        <li><span class="status-placeholder">[Referência 3: Documentação oficial de SimPy (https://simpy.readthedocs.io/)]</span></li>
+                        <li><span class="status-placeholder">[Referência 4: Documentação de SciPy.stats para teste Kolmogorov-Smirnov]</span></li>
+                        <li><span class="status-placeholder">[Referência 5: NumPy e Matplotlib documentação]</span></li>
+                        <li><span class="status-placeholder">[Referência 6: Material sobre Processos de Poisson e processos de chegada]</span></li>
+                        <li><span class="status-placeholder">[Referência 7: Documentação sobre SEMCASPI e CRAS (fontes oficiais)]</span></li>
+                        <li><span class="status-placeholder">[Referência 8: Outras referências específicas do trabalho...]</span></li>
+                    </ol>
+                </div>
+
+                <h3>Exemplo de Formatação APA</h3>
+                <p style="margin-left: 40px; text-indent: -40px;">
+                    <span class="status-placeholder">Sobrenome, A. (Ano). Título do trabalho. Editora.</span>
+                </p>
+            </section>
+
+            <!-- SEÇÃO 11: APÊNDICES (OPCIONAL) -->
+            <section>
+                <h2>11. Apêndices (Opcional)</h2>
+
+                <h3>A. Código Python da Simulação de Chegadas</h3>
+                <p>
+                    Código principal para simulação de chegadas sucessivas usando SimPy:
+                </p>
+                <div style="background: #f5f5f5; padding: 15px; border-radius: 4px; overflow-x: auto; margin: 15px 0;">
+                    <pre><span class="status-placeholder">[Inserir código Python completo da simulação de chegadas aqui, incluindo:
+- Inicialização do ambiente SimPy
+- Definição da função generator de chegadas
+- Geração de variáveis aleatórias com a distribuição escolhida
+- Execução das réplicas
+- Cálculo das métricas de intervalos de chegadas
+- Código de análise estatística]</span></pre>
+                </div>
+
+                <h3>B. Dados Brutos Coletados em Campo</h3>
+                <p>
+                    Tabela completa dos horários de chegada registrados:
+                </p>
+                <div class="figura-placeholder">
+                    [Inserir tabela com as colunas: Data, Sequência, Hora, Minuto, Hora/Minuto Convertido para Minutos, Intervalo em Minutos]
+                </div>
+
+                <h3>C. Estatísticas Descritivas por Dia de Coleta</h3>
+                <div class="figura-placeholder">
+                    [Inserir tabela com resumo estatístico dos intervalos para cada dia coletado]
+                </div>
+
+                <h3>D. Resultados Detalhados de Cada Réplica da Simulação</h3>
+                <div class="figura-placeholder">
+                    [Inserir tabela com: número da réplica, intervalo médio simulado, desvio padrão, mínimo, máximo, comparação com observado]
+                </div>
+
+                <h3>E. Testes Estatísticos Adicionais</h3>
+                <p>
+                    Resultados de testes complementares realizados:
+                </p>
+                <ul>
+                    <li><span class="status-placeholder">[Teste Anderson-Darling se realizado]</span></li>
+                    <li><span class="status-placeholder">[Teste do Chi-quadrado se realizado]</span></li>
+                    <li><span class="status-placeholder">[Teste de normalidade dos resíduos]</span></li>
+                </ul>
+
+                <h3>F. Gráficos Adicionais</h3>
+                <div class="figura-placeholder">
+                    [Inserir gráficos de densidade (KDE) dos intervalos observados vs. simulados]
+                </div>
+
+                <div class="figura-placeholder">
+                    [Inserir gráfico de autocorrelação dos intervalos (se aplicável)]
+                </div>
+
+                <div class="figura-placeholder">
+                    [Inserir gráficos de diagnóstico adicionais não inclusos no corpo principal]
+                </div>
+            </section>
+
+        </div>
+
+        <footer>
+            <p><strong>Relatório Final - Modelagem e Simulação de Eventos Discretos</strong></p>
+            <p>Universidade Estadual do Piauí - UESPI</p>
+            <p>Bacharelado em Ciência da Computação</p>
+            <p style="margin-top: 15px; color: #999;">Gerado em: <span id="data"></span></p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('data').textContent = new Date().toLocaleDateString('pt-BR');
+    </script>
+</body>
+</html>
