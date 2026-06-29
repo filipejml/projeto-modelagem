@@ -237,6 +237,28 @@
             border-radius: 4px;
         }
 
+        .figura-relatorio {
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .figura-relatorio img {
+            display: block;
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .figura-relatorio figcaption {
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.95em;
+            text-align: center;
+        }
+
         .page-break {
             page-break-after: always;
             margin: 40px 0;
@@ -573,13 +595,20 @@
                 </table>
 
                 <h4>Visualizações</h4>
-                <div class="figura-placeholder">
-                    [Inserir histograma dos intervalos entre chegadas]
-                </div>
+                <figure class="figura-relatorio">
+                    <img src="imagens/histograma_tec.png" alt="Histograma dos tempos entre chegadas">
+                    <figcaption>Histograma dos tempos entre chegadas com curva de densidade.</figcaption>
+                </figure>
 
-                <div class="figura-placeholder">
-                    [Inserir box plot dos dados]
-                </div>
+                <figure class="figura-relatorio">
+                    <img src="imagens/dispersao_observacao_k.png" alt="Diagrama de dispersÃ£o entre observaÃ§Ãµes consecutivas">
+                    <figcaption>Diagrama de dispersÃ£o entre a observaÃ§Ã£o k e a observaÃ§Ã£o k+1.</figcaption>
+                </figure>
+
+                <figure class="figura-relatorio">
+                    <img src="imagens/media_cumulativa.png" alt="Curva de convergÃªncia da mÃ©dia cumulativa">
+                    <figcaption>Curva de convergÃªncia da mÃ©dia cumulativa dos intervalos.</figcaption>
+                </figure>
 
                 <h3>4.3 Taxa de Chegadas (λ) e Intervalo Médio entre Chegadas</h3>
                 <p>

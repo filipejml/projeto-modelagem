@@ -1,5 +1,17 @@
+import os
+from pathlib import Path
+
+OUTPUT_DIR = Path("imagens")
+MPLCONFIG_DIR = Path(".matplotlib")
+OUTPUT_DIR.mkdir(exist_ok=True)
+MPLCONFIG_DIR.mkdir(exist_ok=True)
+os.environ.setdefault("MPLCONFIGDIR", str(MPLCONFIG_DIR.resolve()))
+
 import pandas as pd
 import numpy as np
+import matplotlib
+
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -56,7 +68,9 @@ sns.scatterplot(x=x, y=y, color='#1f77b4', alpha=0.6, edgecolor='k')
 plt.title('Diagrama de Dispersão: Observação $k$ vs $k+1$')
 plt.xlabel('Observação $k$')
 plt.ylabel('Observação $k+1$')
-plt.show()
+plt.tight_layout()
+plt.savefig(OUTPUT_DIR / "dispersao_observacao_k.png", dpi=160, bbox_inches="tight")
+plt.close()
 
 # -> B) Histograma com Regra de Sturges
 n = len(df_sem_discrepancia)
@@ -67,7 +81,9 @@ sns.histplot(data=df_sem_discrepancia, bins=K, color='#2ca02c', edgecolor='black
 plt.title(f'Histograma do TEC CadÚnico ({K} classes)')
 plt.xlabel('Tempo Entre Chegadas (Minutos)')
 plt.ylabel('Frequência')
-plt.show()
+plt.tight_layout()
+plt.savefig(OUTPUT_DIR / "histograma_tec.png", dpi=160, bbox_inches="tight")
+plt.close()
 
 # -> C) Curva da Média Cumulativa
 # Recurso legal do notebook do supermercado para ver se o sistema atinge o "Steady State"
@@ -80,4 +96,8 @@ plt.xlabel('Número de Chegadas')
 plt.ylabel('Média Cumulativa (Minutos)')
 plt.axhline(df_sem_discrepancia.mean(), color='black', linestyle='--', label='Média Final')
 plt.legend()
-plt.show()
+plt.tight_layout()
+plt.savefig(OUTPUT_DIR / "media_cumulativa.png", dpi=160, bbox_inches="tight")
+plt.close()
+
+print(f"Graficos salvos em: {OUTPUT_DIR.resolve()}")
