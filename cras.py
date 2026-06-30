@@ -1,5 +1,11 @@
 import os
 from pathlib import Path
+import scipy.stats as stats
+import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy.stats import expon
 
 OUTPUT_DIR = Path("imagens")
 MPLCONFIG_DIR = Path(".matplotlib")
@@ -101,3 +107,31 @@ plt.savefig(OUTPUT_DIR / "media_cumulativa.png", dpi=160, bbox_inches="tight")
 plt.close()
 
 print(f"Graficos salvos em: {OUTPUT_DIR.resolve()}")
+
+plt.figure(figsize=(8, 6))
+stats.probplot(df_sem_discrepancia, dist="expon", sparams=(0, df_sem_discrepancia.mean()), plot=plt)
+plt.title('Gráfico Q-Q: Intervalos vs Distribuição Exponencial')
+plt.xlabel('Quantis Teóricos')
+plt.ylabel('Quantis Observados')
+plt.grid(True)
+plt.savefig('qq_plot_exponencial.png')
+plt.show()
+
+# Parâmetro lambda que calculamos anteriormente (0,313)
+lam = df_sem_discrepancia.mean()**-1
+
+# Plot
+plt.figure(figsize=(8, 6))
+# Histograma normalizado (density=True) para alinhar com a curva teórica
+sns.histplot(df_sem_discrepancia, bins=10, stat="density", color='#2ca02c', alpha=0.4, label='Dados Observados')
+
+# Curva teórica exponencial
+x = np.linspace(0, df_sem_discrepancia.max(), 100)
+plt.plot(x, expon.pdf(x, scale=1/lam), color='red', lw=3, label=f'Distribuição Exponencial (λ={lam:.2f})')
+
+plt.title('Histograma dos Intervalos vs. Curva Teórica')
+plt.xlabel('Intervalos entre chegadas (min)')
+plt.ylabel('Densidade')
+plt.legend()
+plt.savefig('histograma_pdf.png')
+plt.show()
